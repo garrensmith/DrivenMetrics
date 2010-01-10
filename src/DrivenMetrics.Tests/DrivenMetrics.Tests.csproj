@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{56DA1F04-E691-46E9-8823-2EA5B3CF2A28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DrivenMetrics.Tests</RootNamespace>
+    <AssemblyName>DrivenMetrics.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Rhino.Mocks 3.5\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.6.8.8607, Culture=neutral, PublicKeyToken=c04d82a8546dde85">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Mono\Mono.Cecil.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Console\ConsoleArgumentsTest.cs" />
+    <Compile Include="Core\AssemblyLoaderTests.cs" />
+    <Compile Include="Core\CyclomicComplexityTests.cs" />
+    <Compile Include="Core\DrivenMetricTests.cs" />
+    <Compile Include="ExtentionTests\CollectionExtentionTests.cs" />
+    <Compile Include="ExtentionTests\TypeDefinitionExtensionTests.cs" />
+    <Compile Include="Core\NumberOfLinesCalculatorTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\HtmlReportTest.cs" />
+    <Compile Include="TestBuilders\MetricResultBuilder.cs" />
+    <Compile Include="TestBuilders\TypeDefinitionBuilder.cs" />
+    <Compile Include="TestBuilders\TypeDefinitionListBuilder.cs" />
+    <Compile Include="Reporting\HtmlFailedReportTests.cs" />
+    <Compile Include="Core\AssemblySearcherTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\DrivenMetrics.csproj">
+      <Project>{E25161E9-6DEF-400D-9882-B99D8A7C36C8}</Project>
+      <Name>DrivenMetrics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrivenMetric.UI.Console\DrivenMetric.UI.Console.csproj">
+      <Project>{2A7BCA06-785B-4F2D-93D0-D9417D1F7691}</Project>
+      <Name>DrivenMetric.UI.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mono.Cecil.Extensions\Mono.Cecil.Extensions.csproj">
+      <Project>{2D970FBC-977C-4B5E-B347-2DF0F92E3BEC}</Project>
+      <Name>Mono.Cecil.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI.Console\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
