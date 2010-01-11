@@ -1,4 +1,4 @@
-using DrivenMetrics.UI.Console;
+using DrivenMetric.UI.Console;
 using NUnit.Framework;
 using System;
 using DrivenMetrics.Reporting;
@@ -132,7 +132,7 @@ namespace DrivenMetrics.Tests.Console
             var argumentparser = new ConsoleArgumentParser(args);
             var arguments = argumentparser.Parse();
 
-            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.CyclomicComplextityCalculator"));	
+            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.ILCyclomicComplextityCalculator"));	
 			Assert.That(arguments.Metrics[0].MaxPassValue,Is.EqualTo(10));
 		}
 		
@@ -145,7 +145,7 @@ namespace DrivenMetrics.Tests.Console
             var argumentparser = new ConsoleArgumentParser(args);
             var arguments = argumentparser.Parse();
 
-            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.CyclomicComplextityCalculator"));
+            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.ILCyclomicComplextityCalculator"));
 			Assert.That(arguments.Metrics[0].MaxPassValue,Is.EqualTo(15));			            
 		}
 		
@@ -158,7 +158,7 @@ namespace DrivenMetrics.Tests.Console
             var argumentparser = new ConsoleArgumentParser(args);
             var arguments = argumentparser.Parse();
 
-            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.CyclomicComplextityCalculator"));
+            Assert.That(arguments.Metrics[0].ToString(),Is.EqualTo("DrivenMetrics.metrics.ILCyclomicComplextityCalculator"));
 			Assert.That(arguments.Metrics[0].MaxPassValue,Is.EqualTo(15));			            
 		}
 		

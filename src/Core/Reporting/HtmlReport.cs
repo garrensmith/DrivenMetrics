@@ -43,10 +43,10 @@ namespace DrivenMetrics.Reporting
 										<body>";
 											      
         private const string _htmlTail = @"	</BODY></HTML>";
-        private const string _emptyColumn = @"<td>&nbsp</td>";
+        protected const string _emptyColumn = @"<td>&nbsp</td>";
 		protected string _ReportName = "Driven Metric Report";
 		
-        public string Contents {get; private set;}
+        public string Contents {get; protected set;}
         public string Body {get; private set;}
 		
 		
@@ -74,17 +74,15 @@ namespace DrivenMetrics.Reporting
             Generate(new[] {result});
         }
 		
-        protected virtual void convertResultToHtml(MetricResult result)
+        protected void convertResultToHtml(MetricResult result)
         {
-			
-            Contents += "<h2>" + result.Name + "</h2>";
-            Contents += @"<table border=""1"">
-							<tr>
-							<th>Class</th>
-							<th>Method</th>
-							<th>Result</th>
-							</tr>";
-			
+			createTableHeader(result);
+            inputResults(result);
+            createEndOfTable();
+        }
+
+        protected virtual void inputResults(MetricResult result)
+        {
             foreach(var classResult in result.ClassResults)
             {
                 Contents += "<tr>";
@@ -93,14 +91,25 @@ namespace DrivenMetrics.Reporting
 				
                 foreach(var methodResult in classResult.MethodResults)
                 {
-                    Contents += _emptyColumn;
-                    Contents += "<td>"+ methodResult.Name +"</td>";
                     Contents += addResult(methodResult);
-                    Contents += "</tr>";
                 }
             }
+        }
 
+        private void createEndOfTable()
+        {
             Contents += endOfTable();
+        }
+
+        private void createTableHeader(MetricResult result)
+        {
+            Contents += "<h2>" + result.Name + "</h2>";
+            Contents += @"<table border=""1"">
+							<tr>
+							<th>Class</th>
+							<th>Method</th>
+							<th>Result</th>
+							</tr>";
         }
 
         private string endOfTable()
@@ -110,10 +119,18 @@ namespace DrivenMetrics.Reporting
 
         protected virtual string addResult(MethodResult methodResult)
         {
+            string result = string.Empty;
+
+            result += _emptyColumn;
+            result += "<td>" + methodResult.Name + "</td>";
+
             if (methodResult.Pass)
-                return @"<td id =""pass"">"+ methodResult.Result +"</td>";
-	        
-            return @"<td id =""fail"">" + methodResult.Result + "</td>";
+                result += @"<td id =""pass"">" + methodResult.Result + "</td>";
+            else
+                result += @"<td id =""fail"">" + methodResult.Result + "</td>";
+
+            result += "</tr>";
+            return result;
         }
 
         private void addHtmlHeader()
@@ -126,6 +143,6 @@ namespace DrivenMetrics.Reporting
         {
             Contents += _htmlTail;
         }
-		
+		 
     }
 }

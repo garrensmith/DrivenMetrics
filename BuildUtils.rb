@@ -4,14 +4,14 @@ class NUnitRunner
 	include FileTest
 
 	def initialize(paths)
-		@sourceDir = paths.fetch(:source, 'source')
+		@sourceDir = paths.fetch(:source, 'src')
 		@nunitDir = paths.fetch(:nunit, 'tools\\nunit')
 		@resultsDir = paths.fetch(:results, 'results')
 		@compileTarget = paths.fetch(:compilemode, 'debug')
 	end
 	
 	def executeTests(assemblies)
-		Dir.mkdir @resultsDir unless exists?(@resultsDir)
+		Dir.mkdir @resultsDir #unless exists?(@resultsDir)
 		
 		assemblies.each do |assem|
 			file = File.expand_path("#{@sourceDir}/#{assem}/bin/#{@compileTarget}/#{assem}.dll")

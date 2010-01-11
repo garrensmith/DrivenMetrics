@@ -19,7 +19,7 @@ namespace DrivenMetrics.Tests
         public void ShouldLoadValidMethod()
         {
             var methodFinder = new AssemblySearcher(_assembly);
-            var method = methodFinder.Find("First");
+            var method = methodFinder.FindMethod("First");
 
             Assert.That(method.Name,Is.EqualTo("First"));
         }
@@ -28,7 +28,7 @@ namespace DrivenMetrics.Tests
         public void ShouldReturnNullForInvalidMethod()
         {
             var methodFinder = new AssemblySearcher(_assembly);
-            var method = methodFinder.Find("NonExisting");
+            var method = methodFinder.FindMethod("NonExisting");
 
             Assert.That(method, Is.Null);
         }
@@ -39,7 +39,7 @@ namespace DrivenMetrics.Tests
             var methodFinder = new AssemblySearcher(_assembly);
             var types = methodFinder.GetAllTypes().ToList();
             
-            Assert.That(types.Count,Is.EqualTo(2));
+            Assert.That(types.Count,Is.EqualTo(3));
         }
 
     }

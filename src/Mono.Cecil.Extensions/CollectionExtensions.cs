@@ -17,8 +17,9 @@ namespace Mono.Cecil.Extensions
         public static IEnumerable<MethodDefinition> WithBodys(this MethodDefinitionCollection methodDefinitionCollection)
         {
             return from MethodDefinition method in methodDefinitionCollection
-                   where method.Body != null && method.IsSetter == false && method.IsGetter == false && method.IsConstructor == false
+                   where method.Body != null && method.IsSetter == false && method.IsGetter == false && method.IsConstructor == false && method.Name.Contains("__") == false
                    select method;
         }
     }
 }
+

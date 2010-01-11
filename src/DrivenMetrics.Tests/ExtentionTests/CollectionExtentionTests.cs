@@ -21,7 +21,7 @@ namespace DrivenMetrics.Tests.ExtentionTests
         [Test]
         public void ShouldReturnAllInstructionsWithSequencePoints()
         {
-            var method = _methodFinder.Find("First");
+            var method = _methodFinder.FindMethod("First");
 
             var instructions = method.Body.Instructions.WithSequencePoint();
 
@@ -66,6 +66,20 @@ namespace DrivenMetrics.Tests.ExtentionTests
                 foreach (MethodDefinition methodDefinition in type.Methods.WithBodys())
                 {
                     Assert.That(methodDefinition.IsConstructor, Is.False);
+                }
+            }
+        }
+
+        [Test]
+        public void ShouldNotReturnAnyCompilerMadeMethods()
+        {
+            var types = _methodFinder.GetAllTypes();
+
+            foreach (var type in types)
+            {
+                foreach (MethodDefinition methodDefinition in type.Methods.WithBodys())
+                {
+                    Assert.That(methodDefinition.Name.Contains("__"), Is.False);
                 }
             }
         }

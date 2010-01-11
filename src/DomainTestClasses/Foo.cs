@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace DomainTestClasses
 {
@@ -45,13 +46,13 @@ namespace DomainTestClasses
 
         static int Fourth()
         {
-            /*int i = 0;
+            int i = 0;
             int k = 1;
 
             while(i < 5)
             {
                 k++;
-            }*/
+            }
 
             var random = new Random(4);
 
@@ -84,7 +85,16 @@ namespace DomainTestClasses
             return;
         }
 
-        
+        public int[] CreateCompilerMethod()
+        {
+            var numbers = new[] {1, 2, 3, 4, 5, 6};
+
+            var even = from num in numbers
+                       where (num%2 == 0)
+                       select num;
+
+            return even.ToArray();
+        }
     }
 
     public abstract class BaseClass

@@ -44,7 +44,7 @@ namespace DrivenMetrics
         {
             var methodDefinition = getMethod(methodName);
             
-            var cyclomicCompexity = new CyclomicComplextityCalculator();
+            var cyclomicCompexity = new ILCyclomicComplextityCalculator();
             return cyclomicCompexity.Calculate(methodDefinition);
             return 5;
         }*/
@@ -87,9 +87,10 @@ namespace DrivenMetrics
                 }
 
                 var methodFinder = new AssemblySearcher(assemblies.ToArray());
-                var htmlReport = new HtmlReport(new FileWriter(), reportFilePath);
+                //var htmlReport = new HtmlReport(new FileWriter(), reportFilePath);
+                var htmlReport = new HtmlFailedReport(new FileWriter(), reportFilePath);
                 var numberOfLines = new NumberOfLinesCalculator(20);
-                var cyclomicCompexity = new CyclomicComplextityCalculator(20);
+                var cyclomicCompexity = new ILCyclomicComplextityCalculator(20);
 
                 var drivenMetric = new DrivenMetric(methodFinder, htmlReport, new IMetricCalculator[] { numberOfLines, cyclomicCompexity });
 

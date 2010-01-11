@@ -1,4 +1,4 @@
-COMPILE_TARGET = "debug"
+COMPILE_TARGET = "Release"
 require "BuildUtils.rb"
 
 BUILD_NUMBER = "0.1.0.0"
@@ -8,7 +8,9 @@ COMMON_ASSEMBLY_INFO = 'src/CommonAssemblyInfo.cs';
 
 versionNumber = 0.1
 
-task :default => [:package]#:compile] #, :unit_test]
+task :default => [:net]
+task :mono => [:package,:compile_mono, :unit_test, :package]
+task :net => [:version, :compile_net, :unit_test, :package]
 
 task :version do
  builder = AsmInfoBuilder.new(BUILD_NUMBER, {'Product' => PRODUCT, 'Copyright' => COPYRIGHT})
@@ -16,16 +18,22 @@ task :version do
  builder.write COMMON_ASSEMBLY_INFO  
 end
 
-task :compile => :version do
+task :compile_net => :version do
+  MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
+end
+
+task :compile_mono => :version do
   #MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
 end
 
-task :unit_test => :compile do
+task :unit_test  do
   runner = NUnitRunner.new :compilemode => COMPILE_TARGET
-  runner.executeTests ['StoryTeller.Testing', 'HtmlTags.Testing']
+  runner.executeTests ['DrivenMetrics.Tests']
 end
 
 task :package  do
+  puts "Packaging into deploy"
+  
   require 'fileutils'
   FileUtils.rm_rf 'deploy'
 
@@ -34,6 +42,8 @@ task :package  do
   FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/DrivenMetric.UI.Console.exe', 'deploy'
   FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/DrivenMetrics.dll', 'deploy'
   FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/Mono.Cecil.Extensions.dll', 'deploy'
+  FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/Mono.Cecil.dll', 'deploy'
+  FileUtils.cp 'lib/Mono/Mono.Cecil.Pdb.dll', 'deploy'
 end
 
 

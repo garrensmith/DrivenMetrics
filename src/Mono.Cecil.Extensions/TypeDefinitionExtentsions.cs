@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Mono.Cecil.Extensions
+﻿namespace Mono.Cecil.Extensions
 {
     public static class TypeDefinitionExtentsions
     {
@@ -13,9 +8,14 @@ namespace Mono.Cecil.Extensions
             if (typeDefinition.Name == "<Module>")
                 return false;
 
+            //need to write a test for this
+            if (typeDefinition.Name.Contains("__"))
+                return false;
+            
             if (!typeDefinition.IsClass)
                 return false;
 
+            
             return true;
         }
     }

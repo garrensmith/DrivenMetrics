@@ -20,7 +20,7 @@ namespace DrivenMetrics
         }
         
         //TODO: test for polymorphism
-        public MethodDefinition Find(string methodName)
+        public MethodDefinition FindMethod(string methodName)
         {
             foreach (AssemblyDefinition definition in _assemblyDefinitions)
             {
