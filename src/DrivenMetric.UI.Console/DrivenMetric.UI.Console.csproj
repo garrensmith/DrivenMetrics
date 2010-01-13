@@ -27,13 +27,12 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NDesk.Options, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ndesk-options\NDesk.Options.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\lib\ndesk-options\Options.cs">
+      <Link>Options.cs</Link>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="ConsoleArgumentParser.cs" />
     <Compile Include="ConsoleArguments.cs" />

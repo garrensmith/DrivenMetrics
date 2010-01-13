@@ -11,3 +11,4 @@ _ReSharper.*
 *.swp
 *.userprefs
 *.pidb
+*DS_Store*

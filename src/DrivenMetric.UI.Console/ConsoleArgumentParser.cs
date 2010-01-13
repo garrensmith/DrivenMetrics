@@ -6,6 +6,7 @@ using DrivenMetrics.Reporting;
 
 namespace DrivenMetric.UI.Console
 {
+    [Obsolete]
     public class ConsoleArgumentParser
     {
         private readonly List<string> _args;

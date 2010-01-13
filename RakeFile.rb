@@ -44,6 +44,8 @@ task :package  do
   FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/Mono.Cecil.Extensions.dll', 'deploy'
   FileUtils.cp 'src/DrivenMetric.UI.Console/bin/Release/Mono.Cecil.dll', 'deploy'
   FileUtils.cp 'lib/Mono/Mono.Cecil.Pdb.dll', 'deploy'
+  puts ""
+  puts "DONE!"
 end
 
 

@@ -1,6 +1,6 @@
 TODO:
 
-Complete Rake build
 Create extension functionality, maybe Mono.Addins
 Get it tests passing on mono
 Add Rake and Nant useablity
+Look at adding a dynamic way to add reports
