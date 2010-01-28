@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DrivenMetrics.Metrics
+namespace Driven.Metrics.Metrics
 {
     public class MethodResult
     {

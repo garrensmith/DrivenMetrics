@@ -3,7 +3,9 @@ using System.Linq;
 using Mono.Cecil.Extensions;
 using NUnit.Framework;
 using Mono.Cecil;
-namespace DrivenMetrics.Tests.ExtentionTests
+using Driven.Metrics;
+
+namespace Driven.Metrics.Tests.ExtentionTests
 {
     [TestFixture]
     public class CollectionExtentionTests

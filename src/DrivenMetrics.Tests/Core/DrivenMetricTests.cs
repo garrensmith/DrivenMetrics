@@ -1,13 +1,14 @@
 using NUnit.Framework;
 using Rhino.Mocks;
-using DrivenMetrics.metrics;
-using DrivenMetrics.Reporting;
+using Driven.Metrics.metrics;
+using Driven.Metrics.Reporting;
 using Mono.Cecil;
 using System.Collections.Generic;
-using DrivenMetrics.Tests.TestBuilders;
-using DrivenMetrics.Interfaces;
+using Driven.Metrics.Tests.TestBuilders;
+using Driven.Metrics.Interfaces;
+using Driven.Metrics;
 
-namespace DrivenMetrics.Tests.Core
+namespace Driven.Metrics.Tests.Core
 {
     [TestFixture]
     public class DrivenMetricTests
@@ -15,7 +16,7 @@ namespace DrivenMetrics.Tests.Core
         [Test]
         public void ShouldCreateInstanceWithOneAssembly()
         {
-            var drivenMetric = new DrivenMetric.Factory().Create(@"C:\Projects\Keyblade\KeyBlade\KeyBlade.DiConfiguration\bin\KeyBlade.Core.dll",
+            var drivenMetric = new DrivenMetrics.Factory().Create(@"C:\Projects\Keyblade\KeyBlade\KeyBlade.DiConfiguration\bin\KeyBlade.Core.dll",
 			                                                     @"C:\Projects\DrivenMetrics\output.html");
             drivenMetric.RunAllMetricsAndGenerateReport();
             
@@ -25,7 +26,7 @@ namespace DrivenMetrics.Tests.Core
         [Test]
         public void ShouldCreateInstanceWithMultipleAssemblies()
         {
-            var drivenMetric = new DrivenMetric.Factory().Create(new[] { "DomainTestClasses.dll", "DomainTestClasses.dll" },
+            var drivenMetric = new DrivenMetrics.Factory().Create(new[] { "DomainTestClasses.dll", "DomainTestClasses.dll" },
 																@"C:\Projects\DrivenMetrics\output.html");
 
             Assert.That(drivenMetric, Is.Not.Null);
@@ -34,7 +35,7 @@ namespace DrivenMetrics.Tests.Core
         [Test]
         public void ShouldCreateInstanceWithManyAssembies()
         {
-            var drivenMetric = new DrivenMetric.Factory().Create(new[] { "DomainTestClasses.dll", "DomainTestClasses.dll" }
+            var drivenMetric = new DrivenMetrics.Factory().Create(new[] { "DomainTestClasses.dll", "DomainTestClasses.dll" }
 																,@"C:\Projects\DrivenMetrics\output.html");
             Assert.That(drivenMetric, Is.Not.Null);
         }
@@ -64,7 +65,7 @@ namespace DrivenMetrics.Tests.Core
 
             //report.Expect(x => x.Generate(metricResults, "")).IgnoreArguments();
             
-            var dMetric = new DrivenMetric(assemblySearcher, report, new[] {metric1, metric2});
+            var dMetric = new DrivenMetrics(assemblySearcher, report, new[] {metric1, metric2});
             dMetric.RunAllMetricsAndGenerateReport();
 
             assemblySearcher.AssertWasCalled(x => x.GetAllTypes(), options => options

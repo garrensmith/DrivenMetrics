@@ -1,7 +1,8 @@
-using DrivenMetrics.metrics;
+using Driven.Metrics.metrics;
 using NUnit.Framework;
+using Driven.Metrics;
 
-namespace DrivenMetrics.Tests.Core.Metrics
+namespace Driven.Metrics.Tests.Core.Metrics
 {
     [TestFixture]
     public class ILCyclomicComplexityTests

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 
-namespace DrivenMetrics.Reporting
+namespace Driven.Metrics.Reporting
 {
     public interface IReport
     {

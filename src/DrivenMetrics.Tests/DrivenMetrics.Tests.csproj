@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,14 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Cecil.Pdb, Version=0.2.0.0, Culture=neutral, PublicKeyToken=c04d82a8546dde85, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Mono\Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="NDesk.Options, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ndesk-options\NDesk.Options.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -63,9 +55,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Mono\Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.2.0.0, Culture=neutral, PublicKeyToken=c04d82a8546dde85">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Mono\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="NDesk.Options, Version=0.2.1.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ndesk-options\NDesk.Options.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Console\ConsoleArgumentsTest.cs" />
     <Compile Include="Core\AssemblyLoaderTests.cs" />
     <Compile Include="Core\Metrics\ILCyclomicComplexityTests.cs" />
     <Compile Include="Core\DrivenMetricTests.cs" />
@@ -96,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI.Console\" />
+    <Folder Include="Console\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

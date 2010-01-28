@@ -1,8 +1,10 @@
-using DrivenMetrics.Reporting;
-using DrivenMetrics.Tests.TestBuilders;
-using NUnit.Framework;
 
-namespace DrivenMetrics.Tests.Reporting
+using NUnit.Framework;
+using Driven.Metrics.Tests.TestBuilders;
+using Driven.Metrics.Reporting;
+
+
+namespace Driven.Metrics.Tests.Reporting
 {
     [TestFixture()]
     public class Test

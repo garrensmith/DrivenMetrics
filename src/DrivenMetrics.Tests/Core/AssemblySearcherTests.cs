@@ -1,7 +1,8 @@
 using System.Linq;
 using NUnit.Framework;
 using Mono.Cecil;
-namespace DrivenMetrics.Tests
+using Driven.Metrics;
+namespace Driven.Metrics.Tests
 {
     [TestFixture]
     public class AssemblySearcherTests

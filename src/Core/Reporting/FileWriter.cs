@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace DrivenMetrics.Reporting
+namespace Driven.Metrics.Reporting
 {
     public class FileWriter : IFileWriter
     {

@@ -2,8 +2,9 @@ using System.IO;
 using NUnit.Framework;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+using Driven.Metrics;
 
-namespace DrivenMetrics.Tests
+namespace Driven.Metrics.Tests
 {
     [TestFixture]
     public class AssemblyLoaderTests

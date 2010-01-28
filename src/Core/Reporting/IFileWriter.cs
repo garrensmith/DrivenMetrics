@@ -1,5 +1,5 @@
 
-namespace DrivenMetrics.Reporting
+namespace Driven.Metrics.Reporting
 {
     public interface IFileWriter
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 
-namespace DrivenMetrics.Tests.TestBuilders
+namespace Driven.Metrics.Tests.TestBuilders
 {
     public class MetricResultBuilder
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 using Mono.Cecil;
 
-namespace DrivenMetrics.metrics
+namespace Driven.Metrics.metrics
 {
     public interface IMetricCalculator
     {

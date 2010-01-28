@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 using Mono.Cecil.Extensions;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
 
-namespace DrivenMetrics.metrics
+namespace Driven.Metrics.metrics
 {
     public class ILCyclomicComplextityCalculator : IMetricCalculator
     {

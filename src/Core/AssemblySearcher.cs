@@ -1,9 +1,9 @@
-using DrivenMetrics.Interfaces;
+using Driven.Metrics.Interfaces;
 using Mono.Cecil;
 using System.Collections.Generic;
 using Mono.Cecil.Extensions;
 
-namespace DrivenMetrics
+namespace Driven.Metrics
 {
     public class AssemblySearcher : IAssemblySearcher
     {

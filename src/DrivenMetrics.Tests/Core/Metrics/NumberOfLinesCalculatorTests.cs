@@ -1,8 +1,9 @@
 using Mono.Cecil;
 using NUnit.Framework;
-using DrivenMetrics.metrics;
+using Driven.Metrics.metrics;
+using Driven.Metrics;
 
-namespace DrivenMetrics.Tests.Core.Metrics
+namespace Driven.Metrics.Tests.Core.Metrics
 {
     [TestFixture]
     public class NumberOfLinesCalculatorTests

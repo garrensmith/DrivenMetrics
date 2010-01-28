@@ -1,9 +1,9 @@
 using System;
-using DrivenMetrics.Reporting;
+using Driven.Metrics.Reporting;
 using NDesk.Options;
-using DrivenMetrics.metrics;
+using Driven.Metrics.metrics;
 
-namespace DrivenMetric.UI.Console
+namespace Driven.Metric.UI.Console
 {
     public static class Program
     {
@@ -108,13 +108,13 @@ namespace DrivenMetric.UI.Console
             System.Console.WriteLine("DrivenMetric.UI.Console -a test.dll -a test2.dll -cc -loc 15 -rFail output.html");
         }
 
-        private static DrivenMetrics.DrivenMetric bootStrap(ConsoleArguments argument)
+        private static Driven.Metrics.DrivenMetrics bootStrap(ConsoleArguments argument)
         {
             var reportFactory = new ReportFactory();
 
             var htmlReport = reportFactory.ResolveReport(argument.ReportType, argument.ReportName);
 
-            return new DrivenMetrics.DrivenMetric.Factory().Create(argument.AssemblyNames.ToArray(),
+            return new Driven.Metrics.DrivenMetrics.Factory().Create(argument.AssemblyNames.ToArray(),
                                                      argument.Metrics.ToArray(),
                                                      argument.ReportName, htmlReport);
         }

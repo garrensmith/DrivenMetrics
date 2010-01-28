@@ -1,6 +1,6 @@
-﻿using Mono.Cecil;
+using Mono.Cecil;
 
-namespace DrivenMetrics.Tests.TestBuilders
+namespace Driven.Metrics.Tests.TestBuilders
 {
     public class TypeDefinitionBuilder
     {

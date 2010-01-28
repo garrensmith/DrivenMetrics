@@ -1,6 +1,6 @@
 
 
-namespace DrivenMetrics.Reporting
+namespace Driven.Metrics.Reporting
 {
 	public enum ReportType
 	{

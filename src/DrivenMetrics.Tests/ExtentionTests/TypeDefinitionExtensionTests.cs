@@ -1,7 +1,8 @@
 using Mono.Cecil.Extensions;
 using NUnit.Framework;
+using Driven.Metrics;
 
-namespace DrivenMetrics.Tests.ExtentionTests
+namespace Driven.Metrics.Tests.ExtentionTests
 {
     [TestFixture]
     public class TypeDefinitionExtensionTests

@@ -1,6 +1,6 @@
 using Mono.Cecil;
 
-namespace DrivenMetrics.Interfaces
+namespace Driven.Metrics.Interfaces
 {
     public interface IAssemlyLoader
     {

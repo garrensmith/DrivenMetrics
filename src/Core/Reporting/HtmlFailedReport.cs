@@ -1,7 +1,7 @@
 
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 
-namespace DrivenMetrics.Reporting
+namespace Driven.Metrics.Reporting
 {
 
 	public class HtmlFailedReport : HtmlReport

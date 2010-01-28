@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Metrics;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Extensions;
 
-namespace DrivenMetrics.metrics
+namespace Driven.Metrics.metrics
 {
     public class NumberOfLinesCalculator : IMetricCalculator
     {

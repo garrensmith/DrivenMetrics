@@ -1,20 +1,20 @@
 using System.Collections.Generic;
-using DrivenMetrics.Interfaces;
+using Driven.Metrics.Interfaces;
 using Mono.Cecil;
-using DrivenMetrics.Reporting;
-using DrivenMetrics.metrics;
-using DrivenMetrics.Metrics;
+using Driven.Metrics.Reporting;
+using Driven.Metrics.metrics;
+using Driven.Metrics.Metrics;
 using System;
 
-namespace DrivenMetrics
+namespace Driven.Metrics
 {
-    public class DrivenMetric
+    public class DrivenMetrics
     {
         public readonly IAssemblySearcher _assemblySearcher;
         public readonly IReport Report;
         public readonly IMetricCalculator[] _metricCalculators;
 
-        public DrivenMetric(IAssemblySearcher methodFinder, IReport report, IMetricCalculator[] metricCalculators )
+        public DrivenMetrics(IAssemblySearcher methodFinder, IReport report, IMetricCalculator[] metricCalculators )
         {
             
             _assemblySearcher = methodFinder;
@@ -49,7 +49,7 @@ namespace DrivenMetrics
             return 5;
         }*/
 
-        public DrivenMetric Create(string[] assemblyNames)
+        public DrivenMetrics Create(string[] assemblyNames)
             {
                 throw new Exception();
             }
@@ -70,12 +70,12 @@ namespace DrivenMetrics
         
         public class Factory
         {
-            public DrivenMetric Create(string assemblyName,  string reportFilePath)
+            public DrivenMetrics Create(string assemblyName,  string reportFilePath)
             {
                 return Create(new[] {assemblyName}, reportFilePath);
             }
 			
-			public DrivenMetric Create(string[] assemblyNames, string reportFilePath)
+			public DrivenMetrics Create(string[] assemblyNames, string reportFilePath)
             {
                 var assemblies = new List<AssemblyDefinition>();
 
@@ -92,12 +92,12 @@ namespace DrivenMetrics
                 var numberOfLines = new NumberOfLinesCalculator(20);
                 var cyclomicCompexity = new ILCyclomicComplextityCalculator(20);
 
-                var drivenMetric = new DrivenMetric(methodFinder, htmlReport, new IMetricCalculator[] { numberOfLines, cyclomicCompexity });
+                var drivenMetric = new DrivenMetrics(methodFinder, htmlReport, new IMetricCalculator[] { numberOfLines, cyclomicCompexity });
 
                 return drivenMetric;
             }
 			
-			public DrivenMetric Create(string[] assemblyNames, IMetricCalculator[] metrics, string reportFilePath, IReport htmlReport)
+			public DrivenMetrics Create(string[] assemblyNames, IMetricCalculator[] metrics, string reportFilePath, IReport htmlReport)
 			{
 				 var assemblies = new List<AssemblyDefinition>();
 
@@ -109,7 +109,7 @@ namespace DrivenMetrics
                 }
 
                 var methodFinder = new AssemblySearcher(assemblies.ToArray());
-				var drivenMetric = new DrivenMetric(methodFinder, htmlReport, metrics);
+				var drivenMetric = new DrivenMetrics(methodFinder, htmlReport, metrics);
 
                 return drivenMetric;	
 				

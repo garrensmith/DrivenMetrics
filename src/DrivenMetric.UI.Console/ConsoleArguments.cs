@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using DrivenMetrics.metrics;
-using DrivenMetrics.Reporting;
+using Driven.Metrics.metrics;
+using Driven.Metrics.Reporting;
 
-namespace DrivenMetric.UI.Console
+namespace Driven.Metric.UI.Console
 {
     public class ConsoleArguments   
     {

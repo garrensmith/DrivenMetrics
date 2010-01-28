@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Mono.Cecil;
 
-namespace DrivenMetrics.Interfaces
+namespace Driven.Metrics.Interfaces
 {
     public interface IAssemblySearcher
     {
