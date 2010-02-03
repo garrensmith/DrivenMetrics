@@ -19,7 +19,7 @@ And example would be
 TODO
 ----
 
-Get it tests passing on mono
-Implement build on mono with xbuild
-Add Rake and Nant useablity
-Look at adding a dynamic way to add reports and metrics
+* Get it tests passing on mono
+* Implement build on mono with xbuild
+* Add Rake and Nant useablity
+* Look at adding a dynamic way to add reports and metrics
