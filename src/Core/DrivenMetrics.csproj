@@ -62,6 +62,7 @@
     <Compile Include="Metrics\NumberOfLinesCalculator.cs" />
     <Compile Include="Reporting\FileWriter.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
+    <Compile Include="Reporting\HtmlTopTenReport.cs" />
     <Compile Include="Reporting\IFileWriter.cs" />
     <Compile Include="Metrics\MetricResult.cs" />
     <Compile Include="Reporting\IReport.cs" />

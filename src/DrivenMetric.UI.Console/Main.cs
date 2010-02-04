@@ -1,4 +1,5 @@
 using System;
+using Driven.Metrics;
 using Driven.Metrics.Reporting;
 using NDesk.Options;
 using Driven.Metrics.metrics;
@@ -7,43 +8,12 @@ namespace Driven.Metric.UI.Console
 {
     public static class Program
     {
-        /*[STAThread]
-        public static void Main (string[] args)
-        {
-            var argumentparser = new ConsoleArgumentParser(args);
-
-            var argument = argumentparser.Parse();
-            
-            if (argument.Help)
-            {
-                displayHelpCommands();
-                return;
-            }
-			
-            var drivenMetric = bootStrap(argument);
-			
-            drivenMetric.RunAllMetricsAndGenerateReport();
-        }
-
-        static void displayHelpCommands ()
-        {
-            System.Console.WriteLine("Driven Metric Code Analyzer");
-            System.Console.WriteLine();
-            System.Console.WriteLine("/? -- Help");
-            System.Console.WriteLine("-a -- assemblies to analyze eg test.dll test2.dll test3.exe");
-            System.Console.WriteLine("-rAll reportname.html -- Create report for all methods");
-            System.Console.WriteLine("-rFail reportname.html -- Create report for all failing methods");
-            System.Console.WriteLine("-loc n -- Calculate lines of code for each method, n = failing value");
-            System.Console.WriteLine("-cc n -- Calculate Cyclomic Complexity of assemblies, n = failing value");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Example DrivenMetric.UI.Console -a test.dll test2.dll -cc -loc 15 -r output.html");
-        }*/
-        
         [STAThread]
         public static void Main(string[] args)
         {
+            //var serviceLocator = new ServiceLocator();
             var consoleArgument = new ConsoleArguments();
-            
+
             var optionSet = new OptionSet() {
                                         { "a|assembly=", "the {assembly} to analyze",
                                             v => consoleArgument.AssemblyNames.Add(v) },
@@ -69,7 +39,13 @@ namespace Driven.Metric.UI.Console
                                            consoleArgument.
                                                ReportName = v;
                                        }},
-
+                                       {"rTopTen=", "Generate report for all failing methods",v =>
+                                       {
+                                           consoleArgument.ReportType =
+                                               ReportType.TopTen;
+                                           consoleArgument.
+                                               ReportName = v;
+                                       }},
                                         { "h|help",  "show this message and exit", 
                                             v => consoleArgument.Help = v != null },
                                     };
@@ -92,8 +68,16 @@ namespace Driven.Metric.UI.Console
                 return;
             }
 
-            var drivenMetric = bootStrap(consoleArgument);
-            drivenMetric.RunAllMetricsAndGenerateReport();
+            try
+            {
+                var drivenMetric = bootStrap(consoleArgument);
+                drivenMetric.RunAllMetricsAndGenerateReport();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("An error occured:");
+                System.Console.WriteLine(ex.Message);
+            }
         }
 
         static void ShowHelp(OptionSet p)
@@ -108,16 +92,15 @@ namespace Driven.Metric.UI.Console
             System.Console.WriteLine("DrivenMetric.UI.Console -a test.dll -a test2.dll -cc -loc 15 -rFail output.html");
         }
 
-        private static Driven.Metrics.DrivenMetrics bootStrap(ConsoleArguments argument)
+        private static DrivenMetrics bootStrap(ConsoleArguments argument)
         {
             var reportFactory = new ReportFactory();
 
             var htmlReport = reportFactory.ResolveReport(argument.ReportType, argument.ReportName);
 
-            return new Driven.Metrics.DrivenMetrics.Factory().Create(argument.AssemblyNames.ToArray(),
+            return new DrivenMetrics.Factory().Create(argument.AssemblyNames.ToArray(),
                                                      argument.Metrics.ToArray(),
                                                      argument.ReportName, htmlReport);
         }
-
     }
 }

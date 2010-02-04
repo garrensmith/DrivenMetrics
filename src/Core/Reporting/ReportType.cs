@@ -6,5 +6,6 @@ namespace Driven.Metrics.Reporting
 	{
 		All,
 		Failing,
+        TopTen,
 	}
 }

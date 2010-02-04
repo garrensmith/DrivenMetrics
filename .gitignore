@@ -1,5 +1,6 @@
 obj
 bin
+deploy
 test-results
 _ReSharper.*
 *.csproj.user
