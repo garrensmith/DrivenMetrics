@@ -33,6 +33,19 @@ class MSBuildRunner
 	end
 end
 
+class XBuildRunner
+	def self.compile(attributes)
+		version = attributes.fetch(:clrversion, 'v3.5')
+		compileTarget = attributes.fetch(:compilemode, 'debug')
+	    solutionFile = attributes[:solutionfile]
+		
+		#frameworkDir = File.join(ENV['windir'].dup, 'Microsoft.NET', 'Framework', 'v3.5')
+		#msbuildFile = File.join(frameworkDir, 'msbuild.exe')
+		
+		sh "xbuild #{solutionFile} /property:Configuration=#{compileTarget} /t:Rebuild"
+	end
+end
+
 class AsmInfoBuilder
 	attr_reader :buildnumber
 

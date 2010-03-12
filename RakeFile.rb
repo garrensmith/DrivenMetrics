@@ -9,7 +9,7 @@ COMMON_ASSEMBLY_INFO = 'src/CommonAssemblyInfo.cs';
 versionNumber = 0.1
 
 task :default => [:net]
-task :mono => [:package,:compile_mono, :unit_test, :package]
+task :mono => [:version, :compile_mono, :package]
 task :net => [:version, :compile_net, :unit_test, :package]
 
 task :version do
@@ -23,7 +23,7 @@ task :compile_net => :version do
 end
 
 task :compile_mono => :version do
-  #MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
+  XBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
 end
 
 task :unit_test  do
