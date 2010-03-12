@@ -5,7 +5,15 @@ DrivenMetrics is a metrics library to be used with your .net project. It is used
 
 How to Build DrivenMetrics
 --------------------------
-To build in on windows have ruby and rake installed and run rake in the base directory. The final build will be in a folder called *deploy*
+To build project, rake is required. 
+
+For .net
+	rake
+	
+For mono
+	rake mono
+
+The final build will be in a folder called *deploy*
 
 How to run DrivenMetrics
 --------------------------
@@ -19,7 +27,4 @@ And example would be
 TODO
 ----
 
-* Get all tests passing on mono
-* Implement build on mono with xbuild
-* Add Rake and Nant useablity
 * Look at adding a dynamic way to add reports and metrics
