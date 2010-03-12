@@ -36,7 +36,7 @@ namespace Driven.Metrics.Tests.Core.Metrics
             var lineCalculator = new NumberOfLinesCalculator(_MaxLines);
             var loc = lineCalculator.Calculate(method);
 
-            Assert.That(loc.Result, Is.InRange(4,6));
+            Assert.That(loc.Result, Is.InRange(2,6));
         }
 
         [Test]

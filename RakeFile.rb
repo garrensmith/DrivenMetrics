@@ -9,7 +9,7 @@ COMMON_ASSEMBLY_INFO = 'src/CommonAssemblyInfo.cs';
 versionNumber = 0.1
 
 task :default => [:net]
-task :mono => [:version, :compile_mono, :package]
+task :mono => [:version, :compile_mono,:mono_unit_test, :package]
 task :net => [:version, :compile_net, :unit_test, :package]
 
 task :version do
@@ -28,6 +28,11 @@ end
 
 task :unit_test  do
   runner = NUnitRunner.new :compilemode => COMPILE_TARGET
+  runner.executeTests ['DrivenMetrics.Tests']
+end
+
+task :mono_unit_test  do
+  runner = MonoNUnitRunner.new :compilemode => COMPILE_TARGET
   runner.executeTests ['DrivenMetrics.Tests']
 end
 

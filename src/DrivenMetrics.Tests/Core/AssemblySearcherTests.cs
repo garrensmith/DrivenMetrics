@@ -40,7 +40,7 @@ namespace Driven.Metrics.Tests
             var methodFinder = new AssemblySearcher(_assembly);
             var types = methodFinder.GetAllTypes().ToList();
             
-            Assert.That(types.Count,Is.EqualTo(3));
+            Assert.That(types.Count,Is.EqualTo(4));
         }
 
     }

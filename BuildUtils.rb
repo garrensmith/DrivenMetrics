@@ -20,6 +20,22 @@ class NUnitRunner
 	end
 end
 
+class MonoNUnitRunner
+  
+  def initialize(paths)
+    @sourceDir = paths.fetch(:source, 'src')
+    @resultsDir = paths.fetch(:results, 'results')
+		@compileTarget = paths.fetch(:compilemode, 'debug')
+  end
+  
+  def executeTests(assemblies)
+    assemblies.each do |assem|
+			file = File.expand_path("#{@sourceDir}/#{assem}/bin/#{@compileTarget}/#{assem}.dll")
+			sh "nunit-console2 #{file} -nothread -xml=#{@resultsDir}/#{assem}.dll-results.xml"
+		end
+  end
+end
+
 class MSBuildRunner
 	def self.compile(attributes)
 		version = attributes.fetch(:clrversion, 'v3.5')

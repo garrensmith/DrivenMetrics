@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="/Users/garren/Projects/DrivenMetrics/src/DrivenMetrics.Tests/bin/Release/DrivenMetrics.Tests.dll" total="28" failures="0" not-run="2" date="2010-03-12" time="09:35:20">
+  <environment nunit-version="2.4.8.0" clr-version="2.0.50727.1433" os-version="Unix 10.2.0.0" platform="Unix" cwd="/Users/garren/Projects/DrivenMetrics" machine-name="garren-smiths-macbook-pro.local" user="garren" user-domain="garren-smiths-macbook-pro.local" />
+  <culture-info current-culture="" current-uiculture="" />
+  <test-suite name="/Users/garren/Projects/DrivenMetrics/src/DrivenMetrics.Tests/bin/Release/DrivenMetrics.Tests.dll" success="True" time="0.593" asserts="0">
+    <results>
+      <test-suite name="Driven" success="True" time="0.586" asserts="0">
+        <results>
+          <test-suite name="Metrics" success="True" time="0.580" asserts="0">
+            <results>
+              <test-suite name="Tests" success="True" time="0.579" asserts="0">
+                <results>
+                  <test-suite name="AssemblyLoaderTests" success="True" time="0.156" asserts="0">
+                    <results>
+                      <test-case name="Driven.Metrics.Tests.AssemblyLoaderTests.ShouldLoadAssembly" executed="True" success="True" time="0.137" asserts="1" />
+                      <test-case name="Driven.Metrics.Tests.AssemblyLoaderTests.ShouldLoadSymbols" executed="False">
+                        <reason>
+                          <message><![CDATA[]]></message>
+                        </reason>
+                      </test-case>
+                      <test-case name="Driven.Metrics.Tests.AssemblyLoaderTests.ShouldThrowExceptionOnMissingFile" executed="True" success="True" time="0.002" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite name="AssemblySearcherTests" success="True" time="0.023" asserts="0">
+                    <results>
+                      <test-case name="Driven.Metrics.Tests.AssemblySearcherTests.ShouldGetAllTypes" executed="True" success="True" time="0.017" asserts="1" />
+                      <test-case name="Driven.Metrics.Tests.AssemblySearcherTests.ShouldLoadValidMethod" executed="True" success="True" time="0.002" asserts="1" />
+                      <test-case name="Driven.Metrics.Tests.AssemblySearcherTests.ShouldReturnNullForInvalidMethod" executed="True" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite name="Core" success="True" time="0.304" asserts="0">
+                    <results>
+                      <test-suite name="DrivenMetricTests" success="True" time="0.203" asserts="0">
+                        <results>
+                          <test-case name="Driven.Metrics.Tests.Core.DrivenMetricTests.ShouldCreateInstanceWithManyAssembies" executed="True" success="True" time="0.006" asserts="1" />
+                          <test-case name="Driven.Metrics.Tests.Core.DrivenMetricTests.ShouldCreateInstanceWithMultipleAssemblies" executed="True" success="True" time="0.002" asserts="1" />
+                          <test-case name="Driven.Metrics.Tests.Core.DrivenMetricTests.ShouldCreateInstanceWithOneAssembly" executed="False">
+                            <reason>
+                              <message><![CDATA[]]></message>
+                            </reason>
+                          </test-case>
+                          <test-case name="Driven.Metrics.Tests.Core.DrivenMetricTests.ShouldRunAllMetricsAndGenerateReport" executed="True" success="True" time="0.190" asserts="0" />
+                        </results>
+                      </test-suite>
+                      <test-suite name="Metrics" success="True" time="0.098" asserts="0">
+                        <results>
+                          <test-suite name="ILCyclomicComplexityTests" success="True" time="0.067" asserts="0">
+                            <results>
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.ILCyclomicComplexityTests.ShouldCalculateCCForAllMethodsInCollection" executed="True" success="True" time="0.053" asserts="2" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.ILCyclomicComplexityTests.ShouldDetermineCyclomicComplexityForFooFirst" executed="True" success="True" time="0.002" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.ILCyclomicComplexityTests.ShouldDetermineCyclomicComplexityForFooFourth" executed="True" success="True" time="0.005" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.ILCyclomicComplexityTests.ShouldDetermineCyclomicComplexityForFooSecond" executed="True" success="True" time="0.002" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.ILCyclomicComplexityTests.ShouldDetermineCyclomicComplexityForFooThird" executed="True" success="True" time="0.002" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite name="NumberOfLinesCalculatorTests" success="True" time="0.028" asserts="0">
+                            <results>
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.NumberOfLinesCalculatorTests.ShouldCalculateNoLForAllMethodsInCollection" executed="True" success="True" time="0.014" asserts="2" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.NumberOfLinesCalculatorTests.ShouldCalculateNumberOfLinesForFooFirst" executed="True" success="True" time="0.005" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.NumberOfLinesCalculatorTests.ShouldCalculateNumberOfLinesForFooFourth" executed="True" success="True" time="0.002" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.NumberOfLinesCalculatorTests.ShouldCalculateNumberOfLinesForFooSecond" executed="True" success="True" time="0.002" asserts="1" />
+                              <test-case name="Driven.Metrics.Tests.Core.Metrics.NumberOfLinesCalculatorTests.ShouldCalculateNumberOfLinesForFooThird" executed="True" success="True" time="0.002" asserts="1" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite name="ExtentionTests" success="True" time="0.032" asserts="0">
+                    <results>
+                      <test-suite name="CollectionExtentionTests" success="True" time="0.018" asserts="0">
+                        <results>
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.CollectionExtentionTests.ShouldNotReturnAnyCompilerMadeMethods" executed="True" success="True" time="0.003" asserts="6" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.CollectionExtentionTests.ShouldNotReturnConstructor" executed="True" success="True" time="0.002" asserts="6" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.CollectionExtentionTests.ShouldNotReturnGettersOrSetters" executed="True" success="True" time="0.002" asserts="12" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.CollectionExtentionTests.ShouldReturnAllInstructionsWithSequencePoints" executed="True" success="True" time="0.002" asserts="4" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.CollectionExtentionTests.ShouldReturnAllMethodsWithBodies" executed="True" success="True" time="0.002" asserts="6" />
+                        </results>
+                      </test-suite>
+                      <test-suite name="TypeDefinitionExtensionTests" success="True" time="0.010" asserts="0">
+                        <results>
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.TypeDefinitionExtensionTests.ShouldReturnFalseForCompilerMadeMethod" executed="True" success="True" time="0.005" asserts="1" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.TypeDefinitionExtensionTests.ShouldReturnFalseForInMainModule" executed="True" success="True" time="0.001" asserts="1" />
+                          <test-case name="Driven.Metrics.Tests.ExtentionTests.TypeDefinitionExtensionTests.ShouldReturnTrueForValidType" executed="True" success="True" time="0.002" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite name="Reporting" success="True" time="0.016" asserts="0">
+                    <results>
+                      <test-suite name="HtmlFailedReportTests" success="True" time="0.008" asserts="0">
+                        <results>
+                          <test-case name="Driven.Metrics.Tests.Reporting.HtmlFailedReportTests.ShouldWriteMetricInfoIntoBody" executed="True" success="True" time="0.007" asserts="0" />
+                        </results>
+                      </test-suite>
+                      <test-suite name="Test" success="True" time="0.002" asserts="0">
+                        <results>
+                          <test-case name="Driven.Metrics.Tests.Reporting.Test.ShouldWriteMetricInfoIntoBody" executed="True" success="True" time="0.002" asserts="0" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
