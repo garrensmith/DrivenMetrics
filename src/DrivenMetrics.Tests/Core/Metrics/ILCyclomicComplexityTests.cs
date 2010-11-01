@@ -50,7 +50,7 @@ namespace Driven.Metrics.Tests.Core.Metrics
             var cyclomicComplextityCalculator = new ILCyclomicComplextityCalculator(_MaxCC);
             var cc = cyclomicComplextityCalculator.Calculate(method);
 
-            Assert.That(cc.Result, Is.InRange(3, 7)); // actual 4
+            Assert.That(cc.Result, Is.InRange(3, 7)); // actual 3
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Driven.Metrics.Tests.Core.Metrics
             var cyclomicComplextityCalculator = new ILCyclomicComplextityCalculator(_MaxCC);
             var cc = cyclomicComplextityCalculator.Calculate(method);
             
-            Assert.That(cc.Result, Is.InRange(5,10)); //actual 6
+            Assert.That(cc.Result, Is.InRange(5,10)); //actual 5
         }
 
         [Test]
