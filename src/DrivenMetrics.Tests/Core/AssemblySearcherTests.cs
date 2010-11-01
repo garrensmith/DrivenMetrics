@@ -35,6 +35,7 @@ namespace Driven.Metrics.Tests
         }
 
         [Test]
+		[Ignore("Not working on Mono and Mac")]
         public void ShouldGetAllTypes()
         {
             var methodFinder = new AssemblySearcher(_assembly);
