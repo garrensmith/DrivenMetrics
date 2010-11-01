@@ -8,6 +8,9 @@
             if (typeDefinition.Name == "<Module>")
                 return false;
 
+            if (typeDefinition.Name.StartsWith("<PrivateImplementationDetails>"))
+                return false;
+
             //need to write a test for this
             if (typeDefinition.Name.Contains("__"))
                 return false;

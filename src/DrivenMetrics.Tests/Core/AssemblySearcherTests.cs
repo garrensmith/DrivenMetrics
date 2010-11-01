@@ -39,8 +39,8 @@ namespace Driven.Metrics.Tests
         {
             var methodFinder = new AssemblySearcher(_assembly);
             var types = methodFinder.GetAllTypes().ToList();
-            
-            Assert.That(types.Count,Is.EqualTo(4));
+
+            CollectionAssert.AreEquivalent(new[] { "Foo", "BaseClass" }, types.Select((typeDef, index) => typeDef.Name));
         }
 
     }
