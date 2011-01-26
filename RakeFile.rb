@@ -1,5 +1,5 @@
 COMPILE_TARGET = "Release"
-require "BuildUtils.rb"
+require "./BuildUtils.rb"
 
 BUILD_NUMBER = "0.1.0.0"
 PRODUCT = "DrivenMetrics"
