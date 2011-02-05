@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Driven.Metrics.Metrics;
 
 namespace Driven.Metrics.Reporting
@@ -24,7 +25,7 @@ namespace Driven.Metrics.Reporting
                 Contents += "<tr>";
                 Contents += "<td>" + _emptyColumn + "</td>";
 
-                Contents += "<td>" + tt.Name + "</td>";
+                Contents += "<td>" + HttpUtility.HtmlEncode(tt.Name) + "</td>";
 
                 if (tt.Pass)
                     Contents += @"<td id =""pass"">" + tt.Result + "</td>";
