@@ -58,7 +58,8 @@ namespace Driven.Metrics.metrics
            var lines = getLineCount();
            var pass = isLessThanRecommended(lines);
 
-            return new MethodResult(methodDefinition.Name, lines, pass);
+           var friendlyName = methodDefinition.FriendlyName ();
+           return new MethodResult(friendlyName, lines, pass);
         }
 
         private bool isLessThanRecommended(int lines)

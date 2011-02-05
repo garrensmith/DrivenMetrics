@@ -26,8 +26,8 @@ namespace Driven.Metrics.metrics
                 if (isAnotherPath(instruction.OpCode))
                     cc++;
             }
-
-            return new MethodResult(methodDefinition.Name,cc, isAcceptableComplexity(cc));
+            var friendlyName = methodDefinition.FriendlyName ();
+            return new MethodResult(friendlyName,cc, isAcceptableComplexity(cc));
         }
 
         private bool isAcceptableComplexity(int cc)
