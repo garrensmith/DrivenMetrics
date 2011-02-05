@@ -64,6 +64,7 @@
     <Compile Include="Metrics\ILCyclomicComplextityCalculator.cs" />
     <Compile Include="Metrics\IMetricCalculator.cs" />
     <Compile Include="Metrics\NumberOfLinesCalculator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\FileWriter.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
     <Compile Include="Reporting\HtmlTopTenReport.cs" />
@@ -83,9 +84,6 @@
       <Project>{2D970FBC-977C-4B5E-B347-2DF0F92E3BEC}</Project>
       <Name>Mono.Cecil.Extensions</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
