@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <ProjectGuid>{E25161E9-6DEF-400D-9882-B99D8A7C36C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DrivenMetrics</RootNamespace>
+    <RootNamespace>Driven.Metrics</RootNamespace>
     <AssemblyName>DrivenMetrics</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -76,6 +76,7 @@
     <Compile Include="Reporting\HtmlFailedReport.cs" />
     <Compile Include="Reporting\ReportType.cs" />
     <Compile Include="Reporting\ReportFactory.cs" />
+    <Compile Include="Reporting\XmlReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mono.Cecil.Extensions\Mono.Cecil.Extensions.csproj">
