@@ -12,7 +12,9 @@ namespace Driven.Metrics.Reporting
 				report = new HtmlFailedReport(fileWriter, reportName);
             else if (reportType == ReportType.TopTen)
                 report = new HtmlTopTenReport(fileWriter, reportName);
-			else
+            else if (reportName.EndsWith (".xml"))
+                report = new XmlReport (fileWriter, reportName);
+            else
 				report = new HtmlReport(fileWriter,reportName);
 			
 			return report;
