@@ -24,7 +24,11 @@ run the following for help
 And example would be
     DrivenMetric.UI.Console.exe -a "an assembly" -a "another assembly" -cc=20 -loc=20  -rFail
 
+Will generate an XML file output if the specified file ends in .xml
+    
+
 TODO
 ----
-
+* Fix up hacky reports and use a template language instead
+* Upgrade to .net 4
 * Look at adding a dynamic way to add reports and metrics
