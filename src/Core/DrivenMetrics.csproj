@@ -56,6 +56,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Mono\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyLoader.cs" />
