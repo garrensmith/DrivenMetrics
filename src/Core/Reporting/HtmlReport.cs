@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Web;
 using Driven.Metrics.Metrics;
 
 namespace Driven.Metrics.Reporting
@@ -86,7 +87,7 @@ namespace Driven.Metrics.Reporting
             foreach(var classResult in result.ClassResults)
             {
                 Contents += "<tr>";
-                Contents += "<td>" + classResult.Name +"</td>";
+                Contents += "<td>" + HttpUtility.HtmlEncode(classResult.Name) + "</td>";
                 Contents += _emptyColumn + _emptyColumn + "</tr>";
 				
                 foreach(var methodResult in classResult.MethodResults)
@@ -122,7 +123,7 @@ namespace Driven.Metrics.Reporting
             string result = string.Empty;
 
             result += _emptyColumn;
-            result += "<td>" + methodResult.Name + "</td>";
+            result += "<td>" + HttpUtility.HtmlEncode(methodResult.Name) + "</td>";
 
             if (methodResult.Pass)
                 result += @"<td id =""pass"">" + methodResult.Result + "</td>";

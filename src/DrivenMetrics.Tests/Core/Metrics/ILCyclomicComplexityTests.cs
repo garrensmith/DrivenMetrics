@@ -75,7 +75,7 @@ namespace Driven.Metrics.Tests.Core.Metrics
             var numberOfClasses = results.ClassResults.Count;
             var numberOfMethods = results.ClassResults[0].MethodResults.Count;
             
-            Assert.That(numberOfClasses, Is.EqualTo(1));
+            Assert.That(numberOfClasses, Is.EqualTo(2));
             Assert.That(numberOfMethods, Is.EqualTo(6));
         }
     }

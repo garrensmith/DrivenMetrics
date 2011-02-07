@@ -1,4 +1,5 @@
 
+using System.Web;
 using Driven.Metrics.Metrics;
 
 namespace Driven.Metrics.Reporting
@@ -11,7 +12,7 @@ namespace Driven.Metrics.Reporting
             string result = string.Empty;
             //return @"<td id =""fail"">" + methodResult.Result + "</td>";
             result += _emptyColumn;
-            result += "<td>" + methodResult.Name + "</td>";
+            result += "<td>" + HttpUtility.HtmlEncode(methodResult.Name) + "</td>";
             result += @"<td id =""fail"">" + methodResult.Result + "</td>";
             result += "</tr>";
 
@@ -31,7 +32,7 @@ namespace Driven.Metrics.Reporting
 	        {
 	            bool addedClassHeader = false;
                 string htmlClass = "<tr>";
-                htmlClass += "<td>" + classResult.Name + "</td>";
+                htmlClass += "<td>" + HttpUtility.HtmlEncode(classResult.Name) + "</td>";
                 htmlClass += _emptyColumn + _emptyColumn + "</tr>";
 
 	            foreach (var methodResult in classResult.MethodResults)
