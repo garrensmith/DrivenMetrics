@@ -20,9 +20,9 @@ namespace Driven.Metrics.Metrics
     public class ClassResult
     {
         public string Name {get; private set;}
-        public List<MethodResult> MethodResults {get; private set;}
+        public IList<MethodResult> MethodResults {get; private set;}
 		
-        public ClassResult(string name, List<MethodResult> methodResults)
+        public ClassResult(string name, IList<MethodResult> methodResults)
         {
             Name = name;
             MethodResults = methodResults; 
@@ -33,9 +33,9 @@ namespace Driven.Metrics.Metrics
     public class MetricResult
     {
         public string Name {get; private set;}
-        public List<ClassResult> ClassResults {get; private set;}
+        public IList<ClassResult> ClassResults {get; private set;}
 		
-        public MetricResult(string name, List<ClassResult> classResults)
+        public MetricResult(string name, IList<ClassResult> classResults)
         {
             Name = name;
             ClassResults = classResults;
