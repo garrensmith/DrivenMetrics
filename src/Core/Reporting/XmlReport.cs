@@ -40,45 +40,40 @@ namespace Driven.Metrics.Reporting
 
         internal static XElement ConvertResult(MetricResult metricResult)
         {
-            #region <metric name="Cyclomatic Complexity">
             var metric = new XElement ("metric", new XAttribute("name", metricResult.Name));
             foreach (var classResult in metricResult.ClassResults)
             {
-                var @class = ConvertResult (classResult);
-                metric.Add (@class);
+                var convertedResults = ConvertResult (classResult);
+                metric.Add (convertedResults);
             }
-            #endregion
+            
             return metric;
         }
 
         internal static XElement ConvertResult(ClassResult classResult)
         {
-            #region <class name="XmlReport">
-            var @class = new XElement ("class", new XAttribute("name", classResult.Name));
+            var xElement = new XElement ("class", new XAttribute("name", classResult.Name));
             foreach (var methodResult in classResult.MethodResults)
             {
                 var method = ConvertResult (methodResult);
-                @class.Add (method);
+                xElement.Add (method);
             }
-            #endregion
-            return @class;
+            
+            return xElement;
         }
 
         internal static XElement ConvertResult(MethodResult methodResult)
         {
-            #region <method name="ConvertResult" pass="true" result="1" />
             var method = new XElement ("method", 
                 new XAttribute ("name", methodResult.Name),
                 new XAttribute ("pass", methodResult.Pass),
                 new XAttribute ("result", methodResult.Result)
             );
             return method;
-            #endregion
+            
         }
-
-        #region IReport Members
-
-        public void Generate (IEnumerable<MetricResult> results)
+  
+		public void Generate (IEnumerable<MetricResult> results)
         {
             var root = _doc.Root;
             Debug.Assert (root != null);
@@ -94,8 +89,6 @@ namespace Driven.Metrics.Reporting
         public void Generate (MetricResult result)
         {
             Generate (new [] { result});
-        }
-
-        #endregion
+        }        
     }
 }
