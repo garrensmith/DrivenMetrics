@@ -1,10 +1,10 @@
-
-using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyProductAttribute("DrivenMetrics")]
-[assembly: AssemblyCopyrightAttribute("Released under the Apache 2.0 License")]
-[assembly: AssemblyInformationalVersionAttribute("0.1.1.0")]
-[assembly: AssemblyVersionAttribute("0.1.1.0")]
-		
+[assembly: AssemblyTitle("Driven Metrics")]
+[assembly: AssemblyDescription("Driven Metrics, Open Source Code analyzer")]
+[assembly: AssemblyCompany("Garren Smith")]
+[assembly: AssemblyProduct("Driven Metrics")]
+[assembly: AssemblyCopyright("copyright 2011, by Garren Smith")]
+[assembly: AssemblyVersion("0.1.0.0")]
+

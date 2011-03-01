@@ -1,29 +1,38 @@
 COMPILE_TARGET = "Release"
-require "./BuildUtils.rb"
-
-BUILD_NUMBER = "0.1.0.0"
-PRODUCT = "DrivenMetrics"
-COPYRIGHT = 'Released under the Apache 2.0 License';
-COMMON_ASSEMBLY_INFO = 'src/CommonAssemblyInfo.cs';
-
-versionNumber = 0.1
+require "./BuildUtils"
+require "albacore"
 
 task :default => [:net]
-task :mono => [:version, :compile_mono,:mono_unit_test, :package]
-task :net => [:version, :compile_net, :unit_test, :package]
+task :mono => [:assemblyinfo, :compile_mono, :mono_unit_test, :zip]
+task :net => [:assemblyinfo, :compile_net, :unit_test, :package]
 
-task :version do
- builder = AsmInfoBuilder.new(BUILD_NUMBER, {'Product' => PRODUCT, 'Copyright' => COPYRIGHT})
- puts "The build number is #{builder.buildnumber}"
- builder.write COMMON_ASSEMBLY_INFO  
+
+desc "Run a sample assembly info generator"
+assemblyinfo :assemblyinfo do |asm|
+  asm.version = "0.1.0.0"
+  asm.company_name = "Garren Smith"
+  asm.product_name = "Driven Metrics"
+  asm.title = "Driven Metrics"
+  asm.description = "Driven Metrics, Open Source Code analyzer"
+  asm.copyright = "copyright 2011, by Garren Smith"
+  asm.output_file = "src/CommonAssemblyInfo.cs"
 end
+
 
 task :compile_net => :version do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
 end
 
-task :compile_mono => :version do
-  XBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/DrivenMetrics.sln'
+desc "Run a sample build using the MSBuildTask"
+xbuild :xbuild do |msb|
+  msb.properties :configuration => :Debug
+  msb.targets :Clean, :Build
+  msb.solution = "src/DrivenMetrics.sln"
+end
+
+
+task :compile_mono => :assemblyinfo do
+  XBuildRunner.compile :solutionfile => 'src/DrivenMetrics.sln'
 end
 
 task :unit_test  do
@@ -53,6 +62,13 @@ task :package  do
   puts ""
   puts "DONE!"
 end
+
+zip :zip => :package do |zip|
+     zip.directories_to_zip "deploy"
+     zip.output_file = 'DrivenMetrics.zip'
+     zip.output_path = File.dirname(__FILE__)
+end
+
 
 
 
