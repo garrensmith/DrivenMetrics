@@ -1,8 +1,8 @@
 using System;
 using Driven.Metrics;
+using Driven.Metrics.Metrics;
 using Driven.Metrics.Reporting;
 using NDesk.Options;
-using Driven.Metrics.metrics;
 
 namespace Driven.Metric.UI.Console
 {
@@ -11,7 +11,6 @@ namespace Driven.Metric.UI.Console
         [STAThread]
         public static void Main(string[] args)
         {
-            //var serviceLocator = new ServiceLocator();
             var consoleArgument = new ConsoleArguments();
 
             var optionSet = new OptionSet() {
@@ -19,35 +18,14 @@ namespace Driven.Metric.UI.Console
                                             v => consoleArgument.AssemblyNames.Add(v) },
                                         { "cc=", 
                                             "Calculate Cyclomic Complexity with {maximum} acceptable complexity",
-                                            (int v) => consoleArgument.Metrics.Add(new ILCyclomicComplextityCalculator(v)) },
+                                            v => consoleArgument.Metrics.Add(new ILCyclomicComplextityMetric()) },
                                         { "loc=", "Calculate Lines of Code Metric with {maximum} lines of code",
-                                            (int v) => consoleArgument.Metrics.Add(new NumberOfLinesCalculator(v))
+                                            v => consoleArgument.Metrics.Add(new NumberOfLinesMetric())
                                             },
-                                        {"rAll=", "Generate report for all methods",v =>
-                                                                                       {
-                                                                                           consoleArgument.
-                                                                                               ReportType =
-                                                                                               ReportType.All;
-                                                                                           consoleArgument.
-                                                                                               ReportName = v;
-                                                                                       }},
-                                       {"rFail=", "Generate report for all failing methods",v =>
-                                       {
-                                           consoleArgument.
-                                               ReportType =
-                                               ReportType.Failing;
-                                           consoleArgument.
-                                               ReportName = v;
-                                       }},
-                                       {"rTopTen=", "Generate report for all failing methods",v =>
-                                       {
-                                           consoleArgument.ReportType =
-                                               ReportType.TopTen;
-                                           consoleArgument.
-                                               ReportName = v;
-                                       }},
-                                        { "h|help",  "show this message and exit", 
-                                            v => consoleArgument.Help = v != null },
+                                        { "xslt=", "Xslt filename",
+                                            filename => consoleArgument.XsltFilename = filename },
+                                        { "r=", "Report filename",
+                                            filename => consoleArgument.ReportName = filename }
                                     };
 
             try
@@ -68,16 +46,16 @@ namespace Driven.Metric.UI.Console
                 return;
             }
 
-            try
+            //try
             {
                 var drivenMetric = bootStrap(consoleArgument);
                 drivenMetric.RunAllMetricsAndGenerateReport();
             }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("An error occured:");
-                System.Console.WriteLine(ex.Message);
-            }
+            //catch (Exception ex)
+            //{
+            //    System.Console.WriteLine("An error occured:");
+            //    System.Console.WriteLine(ex.Message);
+            //}
         }
 
         static void ShowHelp(OptionSet p)
@@ -89,18 +67,18 @@ namespace Driven.Metric.UI.Console
             p.WriteOptionDescriptions(System.Console.Out);
             System.Console.WriteLine();
             System.Console.WriteLine("Example:");
-            System.Console.WriteLine("DrivenMetric.UI.Console -a test.dll -a test2.dll -cc -loc 15 -rFail output.html");
+            System.Console.WriteLine("DrivenMetric.UI.Console -a test.dll -a test2.dll -a \"DrivenMetric.UI.Console.exe\" -cc -loc -r output.xml -xslt thesame.xslt");
         }
 
         private static DrivenMetrics bootStrap(ConsoleArguments argument)
         {
-            var reportFactory = new ReportFactory();
+            //var reportFactory = new ReportFactory();
 
-            var htmlReport = reportFactory.ResolveReport(argument.ReportType, argument.ReportName);
+            //var htmlReport = reportFactory.ResolveReport(argument.ReportType, argument.ReportName);
 
             return new DrivenMetrics.Factory().Create(argument.AssemblyNames.ToArray(),
                                                      argument.Metrics.ToArray(),
-                                                     argument.ReportName, htmlReport);
+                                                     argument.ReportName, new Report(argument.ReportName, argument.XsltFilename));
         }
     }
 }

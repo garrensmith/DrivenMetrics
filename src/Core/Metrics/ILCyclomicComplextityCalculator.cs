@@ -3,22 +3,23 @@ using Driven.Metrics.Metrics;
 using Mono.Cecil.Extensions;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+using System.Linq;
 
 
-namespace Driven.Metrics.metrics
+namespace Driven.Metrics.Metrics
 {
-    public class ILCyclomicComplextityCalculator : IMetricCalculator
+    public class ILCyclomicComplextityMetric : IMetric
     {
-        	
-		public int MaxPassValue {get; private set;}
-
-        public ILCyclomicComplextityCalculator(int maxPassValue)
+        public ILCyclomicComplextityMetric()
         {
-            MaxPassValue = maxPassValue;
         }
 
-        public MethodResult Calculate(MethodDefinition methodDefinition)
+        private MethodResult Calculate(MethodDefinition methodDefinition)
         {
+            var friendlyName = methodDefinition.FriendlyName();
+            if (methodDefinition.Body == null)
+                return new MethodResult(friendlyName, 0);
+
             int cc = 1;
 
             foreach (Instruction instruction in methodDefinition.Body.Instructions)
@@ -26,23 +27,15 @@ namespace Driven.Metrics.metrics
                 if (isAnotherPath(instruction.OpCode))
                     cc++;
             }
-            var friendlyName = methodDefinition.FriendlyName ();
-            return new MethodResult(friendlyName,cc, isAcceptableComplexity(cc));
-        }
-
-        private bool isAcceptableComplexity(int cc)
-        {
-            if (cc > MaxPassValue)
-                return false;
-
-            return true;
+            
+            return new MethodResult(friendlyName, cc);
         }
 
         private bool isAnotherPath(OpCode opCode)
         {
-           // if (opCode.Code == Code.Switch)
-           //     return true;
-            
+            // if (opCode.Code == Code.Switch)
+            //     return true;
+
             if (opCode.FlowControl == FlowControl.Cond_Branch)
                 return true;
 
@@ -52,32 +45,45 @@ namespace Driven.Metrics.metrics
             if (opCode.Code == Code.Jmp)
                 return true;
 
-            
-
             return false;
         }
 
-        public MetricResult Calculate(IEnumerable<TypeDefinition> types)
+
+        public MethodResult ProcessMethod(MethodDefinition method)
         {
-            var classResults = new List<ClassResult>();
+            return Calculate(method);
+        }
 
-            foreach (TypeDefinition typeDefinition in types)
-            {
-                var results = new List<MethodResult>();
+        public TypeResult ProcessType(TypeDefinition type, MethodResult[] methodResults)
+        {
+            TypeResult result = new TypeResult(type.Name);
+            result.MethodResults = methodResults;
+            result.Result = methodResults.Sum(r => r.Result);
+            return result;
+        }
 
-                foreach (MethodDefinition method in typeDefinition.Methods.WithBodys())
-                {
-                    var methodResult = Calculate(method);
-                    results.Add(methodResult);
-                }
+        public ModuleResult ProcessModule(ModuleDefinition module, TypeResult[] typeResults)
+        {
+            ModuleResult result = new ModuleResult(module.Name);
+            result.TypeResults = typeResults;
+            result.Result = typeResults.Sum(r => r.Result);
+            return result;
+        }
 
-                if (results.Count == 0)
-                    continue;
+        public AssemblyResult ProcessAssembly(AssemblyDefinition assembly, ModuleResult[] moduleResults)
+        {
+            AssemblyResult result = new AssemblyResult(assembly.Name.Name);
+            result.ModuleResults = moduleResults;
+            result.Result = moduleResults.Sum(r => r.Result);
+            return result;
+        }
 
-                classResults.Add(new ClassResult(typeDefinition.Name, results));
-            }
-
-            return new MetricResult("Cyclomic Complexity", classResults);
+        public MetricResult Process(AssemblyResult[] assemblyResults)
+        {
+            MetricResult result = new MetricResult("Cyclomatic complexity");
+            result.AssemblyResults = assemblyResults;
+            result.Result = assemblyResults.Sum(r => r.Result);
+            return result;
         }
     }
 }

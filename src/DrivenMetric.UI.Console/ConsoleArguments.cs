@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Driven.Metrics.metrics;
+using Driven.Metrics.Metrics;
 using Driven.Metrics.Reporting;
 
 namespace Driven.Metric.UI.Console
@@ -9,7 +9,7 @@ namespace Driven.Metric.UI.Console
         public ConsoleArguments()
         {
             AssemblyNames = new List<string>();
-            Metrics = new List<IMetricCalculator>();
+            Metrics = new List<IMetric>();
         }
 	        
         public bool Help {get;set;}
@@ -17,9 +17,9 @@ namespace Driven.Metric.UI.Console
         public List<string> AssemblyNames { get; set; }
 							
         public string ReportName { get; set; }
+
+        public string XsltFilename { get; set; }
 		
-        public ReportType ReportType {get; set;}
-			
-        public List<IMetricCalculator> Metrics { get; set; }
+        public List<IMetric> Metrics { get; set; }
     }
 }

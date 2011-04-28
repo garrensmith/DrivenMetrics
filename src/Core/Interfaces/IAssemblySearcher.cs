@@ -5,7 +5,6 @@ namespace Driven.Metrics.Interfaces
 {
     public interface IAssemblySearcher
     {
-        MethodDefinition FindMethod(string methodName);
-        IEnumerable<TypeDefinition> GetAllTypes();
+        IEnumerable<AssemblyDefinition> GetAllAssemblies();
     }
 }

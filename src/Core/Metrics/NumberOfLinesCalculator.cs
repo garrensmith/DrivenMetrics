@@ -4,44 +4,24 @@ using Driven.Metrics.Metrics;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Extensions;
+using System.Linq;
 
-namespace Driven.Metrics.metrics
+namespace Driven.Metrics.Metrics
 {
-    public class NumberOfLinesCalculator : IMetricCalculator
+    public class NumberOfLinesMetric : IMetric
     {
-        public int MaxPassValue {get; private set;}
         private List<int> _lineNumberCounted;
 
-       public NumberOfLinesCalculator(int maxLines)
-       {
-           MaxPassValue = maxLines;
-       }
-
-       public MetricResult Calculate(IEnumerable<TypeDefinition> types)
-       {
-           var classResults = new List<ClassResult>();
-           
-           foreach (TypeDefinition typeDefinition in types)
-           {
-               var results = new List<MethodResult>();    
-               
-               foreach (MethodDefinition method in typeDefinition.Methods.WithBodys())
-               {
-                   var methodResult = Calculate(method);
-                   results.Add(methodResult);
-               }
-
-               if(results.Count == 0)
-                   continue;
-
-               classResults.Add(new ClassResult(typeDefinition.Name, results));
-           }
-
-           return new MetricResult("Number Of Lines Of Code", classResults);
-       }
-
-       public MethodResult Calculate(MethodDefinition methodDefinition)
+        public NumberOfLinesMetric()
         {
+        }
+
+        private MethodResult Calculate(MethodDefinition methodDefinition)
+        {
+            var friendlyName = methodDefinition.FriendlyName();
+            if (methodDefinition.Body == null)
+                return new MethodResult(friendlyName, 0);
+
             _lineNumberCounted = new List<int>();
 
             foreach (Instruction ins in methodDefinition.Body.Instructions.WithSequencePoint())
@@ -55,19 +35,9 @@ namespace Driven.Metrics.metrics
                 addLine(ins.SequencePoint.StartLine);
             }
 
-           var lines = getLineCount();
-           var pass = isLessThanRecommended(lines);
-
-           var friendlyName = methodDefinition.FriendlyName ();
-           return new MethodResult(friendlyName, lines, pass);
-        }
-
-        private bool isLessThanRecommended(int lines)
-        {
-            if (lines > MaxPassValue)
-                return false;
-
-            return true;
+            var lines = getLineCount();
+            
+            return new MethodResult(friendlyName, lines);
         }
 
         private void addLine(int startline)
@@ -82,15 +52,15 @@ namespace Driven.Metrics.metrics
 
         public bool hasLineBeenCounted(int startline)
         {
-           // if (startline == 0xFeeFee)
-           //     return true;
-            
+            // if (startline == 0xFeeFee)
+            //     return true;
+
             if (_lineNumberCounted.Contains(startline))
                 return true;
 
             return false;
         }
-       
+
         private bool IsBracketOrReturnOpCode(OpCode opCode)
         {
             if (opCode.Code == Code.Nop)
@@ -102,6 +72,42 @@ namespace Driven.Metrics.metrics
             return false;
         }
 
-        
+
+        public MethodResult ProcessMethod(MethodDefinition method)
+        {
+            return Calculate(method);
+        }
+
+        public TypeResult ProcessType(TypeDefinition type, MethodResult[] methodResults)
+        {
+            TypeResult result = new TypeResult(type.Name);
+            result.MethodResults = methodResults;
+            result.Result = methodResults.Sum(r => r.Result);
+            return result;
+        }
+
+        public ModuleResult ProcessModule(ModuleDefinition module, TypeResult[] typeResults)
+        {
+            ModuleResult result = new ModuleResult(module.Name);
+            result.TypeResults = typeResults;
+            result.Result = typeResults.Sum(r => r.Result);
+            return result;
+        }
+
+        public AssemblyResult ProcessAssembly(AssemblyDefinition assembly, ModuleResult[] moduleResults)
+        {
+            AssemblyResult result = new AssemblyResult(assembly.Name.Name);
+            result.ModuleResults = moduleResults;
+            result.Result = moduleResults.Sum(r => r.Result);
+            return result;
+        }
+
+        public MetricResult Process(AssemblyResult[] assemblyResults)
+        {
+            MetricResult result = new MetricResult("Lines of code");
+            result.AssemblyResults = assemblyResults;
+            result.Result = assemblyResults.Sum(r => r.Result);
+            return result;
+        }
     }
 }

@@ -19,35 +19,11 @@ namespace Driven.Metrics
             _assemblyDefinitions = assemblyDefinitions;
         }
         
-        //TODO: test for polymorphism
-        public MethodDefinition FindMethod(string methodName)
+        public IEnumerable<AssemblyDefinition> GetAllAssemblies()
         {
             foreach (AssemblyDefinition definition in _assemblyDefinitions)
             {
-                foreach (TypeDefinition type in definition.MainModule.Types)
-                {
-                    foreach (MethodDefinition method in type.Methods)
-                    {
-                        if (method.Name == methodName)
-                        {
-                            return method;
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public IEnumerable<TypeDefinition> GetAllTypes()
-        {
-            foreach (AssemblyDefinition definition in _assemblyDefinitions)
-            {
-                foreach (TypeDefinition type in definition.MainModule.Types)
-                {
-                    if (type.IsValidForMetrics())
-                        yield return type;
-                }
+                yield return definition;
             }
         }
     }
