@@ -5,6 +5,6 @@ namespace Driven.Metrics.Reporting
 {
     public interface IReport
     {
-        string Generate(params MetricResult[] metricResults);
+        void Generate(params MetricResult[] metricResults);
     }
 }

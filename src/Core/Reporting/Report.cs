@@ -26,13 +26,12 @@ namespace Driven.Metrics.Reporting
         {
         }
 
-        public string Generate(params Metrics.MetricResult[] metricResults)
+        public void Generate(params Metrics.MetricResult[] metricResults)
         {
             ReportResult result = new ReportResult();
             result.MetricResults = metricResults;
             XDocument doc = Serialize(result);
-            string output = Transform(doc);
-            return output;
+            Transform(doc);
         }
 
         private XDocument Serialize<T>(T source)
@@ -45,15 +44,12 @@ namespace Driven.Metrics.Reporting
             return target;
         }
 
-        private string Transform(XDocument doc)
+        private void Transform(XDocument doc)
         {
             XslCompiledTransform xmlTransform = new XslCompiledTransform();
-            StringBuilder output = new StringBuilder();
             XmlWriter writer = XmlWriter.Create(ReportFilename);
-
             xmlTransform.Load(XsltFilename);
             xmlTransform.Transform(doc.CreateReader(), writer);
-            return output.ToString();
         }
 
     }

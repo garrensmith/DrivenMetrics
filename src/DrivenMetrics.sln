@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Cecil.Extensions", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrivenMetric.UI.Console", "DrivenMetric.UI.Console\DrivenMetric.UI.Console.csproj", "{2A7BCA06-785B-4F2D-93D0-D9417D1F7691}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrivenMetrics.Tests", "DrivenMetrics.Tests\DrivenMetrics.Tests.csproj", "{2001877F-3977-480E-BB68-77FEAC776AB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2A7BCA06-785B-4F2D-93D0-D9417D1F7691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A7BCA06-785B-4F2D-93D0-D9417D1F7691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A7BCA06-785B-4F2D-93D0-D9417D1F7691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2001877F-3977-480E-BB68-77FEAC776AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2001877F-3977-480E-BB68-77FEAC776AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2001877F-3977-480E-BB68-77FEAC776AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2001877F-3977-480E-BB68-77FEAC776AB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -66,23 +66,24 @@
     <Compile Include="AssemblyLoader.cs" />
     <Compile Include="DrivenMetric.cs" />
     <Compile Include="Interfaces\IAssemlyLoader.cs" />
-    <Compile Include="Metrics\AssemblyResult.cs" />
-    <Compile Include="Metrics\ILCyclomicComplextityCalculator.cs" />
+    <Compile Include="Results\AssemblyResult.cs" />
+    <Compile Include="Metrics\CyclomaticComplexityReflectorMetric.cs" />
+    <Compile Include="Metrics\ILCyclomicComplextityMetirc.cs" />
     <Compile Include="Metrics\IMetric.cs" />
     <Compile Include="Metrics\IMetricCalculator.cs" />
-    <Compile Include="Metrics\MethodResult.cs" />
+    <Compile Include="Results\MethodResult.cs" />
     <Compile Include="Metrics\MetricCalculator.cs" />
-    <Compile Include="Metrics\ModuleResult.cs" />
+    <Compile Include="Results\ModuleResult.cs" />
     <Compile Include="Metrics\NumberOfLinesCalculator.cs" />
-    <Compile Include="Metrics\TypeResult.cs" />
+    <Compile Include="Results\TypeResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Metrics\MetricResult.cs" />
+    <Compile Include="Results\MetricResult.cs" />
     <Compile Include="Reporting\IReport.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs" />
     <Compile Include="Interfaces\IAssemblySearcher.cs" />
     <Compile Include="AssemblySearcher.cs" />
     <Compile Include="Reporting\Report.cs" />
-    <Compile Include="Reporting\ReportResult.cs" />
+    <Compile Include="Results\ReportResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mono.Cecil.Extensions\Mono.Cecil.Extensions.csproj">
